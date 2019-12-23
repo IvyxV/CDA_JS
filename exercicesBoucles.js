@@ -13,11 +13,11 @@ while (j++ != i - 2) {
 
 /*var N = prompt("Entrez une valeur :");
 while (--N >= 0)
-    alert(N);
+    console.log(N);
 
     /*_______________________________________________________________________________________*/
 
-    /*var N = prompt("Entrez N");
+/*var N = prompt("Entrez N");
 
 while (N-- > 0) {
     console.log(N + "\n");
@@ -79,10 +79,10 @@ var n = prompt("Nombre de multiples :");
 var x = prompt("Pour le nombre entier :");
 
 while (++i <= n)
-    alert(i + "x" + x + "=" + (i * x));
+    console.log(i + "x" + x + "=" + (i * x));
 /*_______________________________________________________________________________________*/
 
-/*console.log(prompt("Entrez un mot en minuscule").match(/[aeiouy]/gi).length);
+//console.log(prompt("Entrez un mot en minuscule").match(/[aeiouy]/gi).length);
 
 /*_______________________________________________________________________________________*/
 /*var age = 0;
@@ -103,52 +103,61 @@ console.log("Nombre de jeune : " + jeune + "Nombre de moyen : " + moyen + "Nombr
 
 /*_______________________________________________________________________________________*/
 
-var nb;
-var i;
-i = 3;
-
-nb = parseInt(prompt("Entrez un nombre"));
-if (nb <= 1)
-    alert("Pas premier");
-else if (nb == 2 || nb == 3 || nb == 5)
-    alert("Premier");
-else if (nb % 2 == 0)
-    alert("Pas premier");
-else {
-    while ((nb % i != 0) && i > Math.sqrt(nb)) {
-
-        if (nb % i == 0)
-            alert("Pas premier");
-        else
-            alert("Premier");
-        i += 2;
+function prime() {
+    var nb = parseInt(prompt("entrez un nombre"));
+    let i = 2;
+    if (nb < 2)
+    return ("pas premier");
+    while (i < nb) {
+        if (nb % i == 0) {
+            return ("pas premier");
+        }
+        i++;
     }
+    return ("premier");
 }
+var i = prime();
+console.log(i);
+// var nb = parseInt(prompt("Entrez un nombre"));
+// var premier = true;
+// for (i = 0; i < nb; i++) {
+//     for (j = 0; j < nb; j++) {
+//         if (nb % j == 0) {
+//             premier = false;
+//         }
+//         if (nb % j != 0) {
+//             premier = true;
+//         }
+//     }
+// }...var nb = parseInt(prompt("Entrez un nombre"));
+// var premier = true;
+
+
+// for (i = nb; i > 0; i--) {
+//     for (j = 2; j < nb; j++) {
+//         if (nb % j == 0) {
+//             premier = false;
+//           console.log("Le nombre " + nb+ " n'est pas premier !");
+//         }
+//     }
+// }
+//         if (premier == true) {
+//             console.log("Le nombre " + nb+ " est premier !");
+//         }
 
 /*_______________________________________________________________________________________*/
 
-var magic = parseInt(Math.random() * 100);
-while (age < 100) {
-    age = prompt("Age?");
-    if (age < 20)
-        jeune++;
-    else if (age > 40)
-        vieux++;
-    else
-        moyen++;
-}
 
-/*_______________________________________________________________________________________*/
-
-
-var magic = parseInt(Math.random() * 100);
-var N = -1;
-if (confirm("Voulez vous jouer?")) {
-    while (N != magic) {
-        N = prompt("Donne une valeur entre 1 et 100");
-        if (N < magic)
-            alert("Trop petit !");
-        else
-            alert("Trop grand !");
-    }
-}
+// var magic = parseInt(Math.random() * 100); //Nombre aléatoire
+// var N = -1;
+// if (confirm("Voulez vous jouer?")) {
+//     while (N != magic) {
+//         N = prompt("Donne une valeur entre 1 et 100");
+//         if (N < magic) {
+//             console.log("Trop petit !");
+//         } else {
+//             console.log("Trop grand !");
+//         }
+//     }
+//     console.log("bravo !");
+// }
