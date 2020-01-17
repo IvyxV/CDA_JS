@@ -107,25 +107,58 @@ _produit(3, 3);
 
 //rechercheLettre("a", "Salut la famille !");
 
-function strtok(str1, str2, n) {
-    let i = 0;
-    let j = 0;
-    var result = "";
+// function strtok(str1, str2, n) {
+//     let i = 0;
+//     let j = 0;
+//     var result = "";
 
-    while (j < n - 1) {
-        if (str1[i] == str2) {
-            j++;
-        }
-        i++;
-    }
-    while (str1[i] != str2) {
-        result += str1[i];
-        i++;
-    }
-    return result;
+//     while (j < n - 1) {
+//         if (str1[i] == str2) {
+//             j++;
+//         }
+//         i++;
+//     }
+//     while (str1[i] != str2) {
+//         result += str1[i];
+//         i++;
+//     }
+//     return result;
+// }
+
+// var str1 = "robert;dupont;amiens;80000";
+// var str2 = ";";
+// var n = 3;
+// console.log(strtok(str1, str2, n));
+/*_______________________________________________________________________________________*/
+
+var PU = parseInt(prompt("Saisissez le prix d'un produit"));
+var QTECOM = parseInt(prompt("Saisissez la quantité"));
+var TOT = PU * QTECOM;
+var PORT = 0; /* Valeur par défaut */
+var REM; /* Valeur par défaut */
+var PAP;
+
+/* Calcul de REM */
+if (TOT >= 100 && TOT <= 200) {
+    REM = (TOT * 0.05);
+} else if (TOT > 200) {
+    REM = (TOT * 0.1);
+} else {
+    REM = 0;
 }
 
-var str1 = "robert;dupont;amiens;80000";
-var str2 = ";";
-var n = 3;
-console.log(strtok(str1, str2, n));
+TOT = TOT - REM;
+console.log("REM = " + REM);
+
+if (TOT <= 500) {
+    PORT = TOT * 0.02;
+    if (PORT < 6) {
+        PORT = 6;
+    }
+}
+
+// Calcul Prix à payer
+PAP = TOT + PORT;
+alert("Le prix à payer est de : " + PAP.toFixed(2)); // .toFixed bloque la décimale à 2 chiffre après la virgule.
+console.log("TOT = " + TOT);
+console.log("REM = " + REM);
