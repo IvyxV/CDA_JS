@@ -1,0 +1,67 @@
+@charset "UTF-8";
+
+body {
+  font-family: "Oswald", sans-serif;
+}
+
+nav {
+  font-family: "Oswald Gras";
+  display: inline-flex;
+}
+
+#contact {
+  background: #F9F9F9;
+  padding: 24px;
+  margin: 16px 0;
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+}
+
+#contact h3 {
+  display: block;
+  font-size: 30px;
+  font-weight: 300;
+  margin-bottom: 10px;
+}
+
+#contact h4 {
+  margin: 5px 0 16px;
+  display: block;
+  font-size: 13px;
+  font-weight: 400;
+}
+
+#contact input[type=text],
+#contact input[type=email],
+#contact input[type=tel],
+#contact input[type=url],
+#contact textarea {
+  display: flex;
+  width: 100%;
+  border: 1px solid #ccc;
+  background: #FFF;
+  margin: 0 0 5px;
+  padding: 10px;
+}
+
+#c_adresse,
+#c_email {
+  padding: 15px;
+}
+
+#demande {
+  height: 96px;
+  display: flex;
+  width: 100%;
+  border: 1px solid #ccc;
+  background: #FFF;
+  margin: 0 0 5px;
+  padding: 10px;
+}
+
+.btn[type=reset]:hover {
+  background: red;
+}
+
+.btn[type=submit]:hover {
+  background: #4CAF50;
+}

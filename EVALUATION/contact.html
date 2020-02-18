@@ -9,7 +9,6 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
     integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
   <link rel="stylesheet" href="assets/css/styles/fichier.css">
-  <link rel="stylesheet" href="assets/css/styles/main.scss">
   <link href="https://fonts.googleapis.com/css?family=Oswald:200,300,400,500,600,700&display=swap" rel="stylesheet">
 </head>
 
@@ -37,17 +36,15 @@
       </nav>
     </header>
   </div>
-<!--__________________________________FORMULAIRE___________________________-->
+  <!--__________________________________FORMULAIRE___________________________-->
   <div class="container">
-    <!-- De ce que j'ai pu voir en PHP, l'action envoie le formulaire si il est bien rempli ( ce qui est vérifié avec la fonction verif), la méthode est POST c'est à dire qu'il affiche les données envoyées par l'utilisateur!-->
     <form id="contact" action="http://bienvu.net/script.php" method="POST" onsubmit="return verif();">
       <h3>Nous contacter</h3>
       <!-- On divisera le formulaire en plusieurs div en fonction des informations demandées !-->
       <div class="form-group">
-
         <!-- Les spans sont cachées et servent à signaler une erreur, elles sont appelées dans le js par leur nom en fonction de l'erreur -->
-<!-- _____________________________________NOM ET PRENOM____________________________-->
-
+        <!-- _____________________________________NOM ET PRENOM____________________________-->
+        <legend>Vos coordonnées</legend>
         <div class="container">
           <div class="row">
             <div class="col-sm">
@@ -70,7 +67,7 @@
             </div>
           </div>
         </div>
-<!-- _____________________________________DATE_DE_NAISSANCE_________________-->
+        <!-- _____________________________________DATE_DE_NAISSANCE_ET_SEXE_________________-->
         <div class="container">
           <div class="row">
             <div class="col-sm">
@@ -83,7 +80,6 @@
                 <input class="form-control" type="date" name="Date" required id="birth" />
               </div>
             </div>
-<!-- ____________________________________SEXE_______________________________-->
             <div class="col-sm">
               <div>
                 <span id="sexe" class="col-2">Vous vous déclarez* : </span>
@@ -106,51 +102,74 @@
             </div>
           </div>
         </div>
-<!-- __________________________________ADRESSE_______________________________-->
-        <input placeholder="Adresse" class="form-control" type="text" name="Adresse" id="adresse" minlength="3" />
-<!-- ___________________________________CODE_POSTAL_______________________________-->
-        <div class="row">
-          <span id="missCp"></span>
+        <!-- ___________________________________CODE_POSTAL_ET_VILLE_______________________________-->
+        <div class="container">
+          <div class="row">
+            <div class="col-sm">
+              <div class="row">
+                <span id="missCp"></span>
+              </div>
+              <input placeholder="Code postal" class="form-control" type="text" name="CodePostal" id="postal"
+                required />
+            </div>
+            <div class="col-sm">
+              <div>
+                <input placeholder="Ville" class="form-control" type="text" name="Ville" id="ville" minlength="3" />
+              </div>
+            </div>
+          </div>
         </div>
-        <input placeholder="Code postal" class="form-control" type="text" name="CodePostal" id="postal" required />
-<!-- _____________________________________VILLE_______________________________-->
-        <input placeholder="Ville" class="form-control" type="text" name="Ville" id="ville" minlength="3" />
-<!-- ___________________________________EMAIL_______________________________-->
-        <div class="row">
-          <span id="missEmail"></span>
+        <!-- __________________________________ADRESSE_______________________________-->
+        <div id="c_adresse">
+          <div class="row">
+            <span id="missAdresse"></span>
+          </div>
+          <input placeholder="Adresse" class="form-control" type="text" name="Adresse" id="adresse" minlength="3" />
         </div>
-        <input placeholder="Email" class="form-control" type="email" name="Email" required placeholder="Email incorrect"
-          id="email" />
-<!-- _________________________________DEMANDE_______________________________-->
+        <!-- ___________________________________EMAIL_______________________________-->
+        <div id="c_email">
+          <div class="row">
+            <span id="missEmail"></span>
+          </div>
+          <input placeholder="Email" class="form-control" type="email" name="Email" required id="email" />
+        </div>
+        <!-- _________________________________DEMANDE_______________________________-->
         <fieldset>
           <span id="missDemande"></span>
           <legend>Votre demande</legend>
           <div class="form-group">
             <label for="sujet">Sujet* : </label>
-            <select class="form-control" name="Sujet" required id="sujet">
-              <option value="1" selected>Mes commandes</option>
-              <option value="2" selected>Question sur un produit</option>
-              <option value="3" selected>Réclamation</option>
-              <option value="4" selected>Autres</option>
-            </select>
-            <label for="demande">Votre demande* :</label>
-            <textarea name="Questions" required id="demande" rows="1"></textarea>
+            <div class="container">
+              <div class="row">
+                <div class="col-sm">
+                  <select class="form-control" name="Sujet" required id="sujet">
+                    <option value="1" selected>Mes commandes</option>
+                    <option value="2" selected>Question sur un produit</option>
+                    <option value="3" selected>Réclamation</option>
+                    <option value="4" selected>Autres</option>
+                  </select>
+                </div>
+                <div class="col-sm"></div>
+              </div>
+            </div>
           </div>
-        </fieldset>
-<!-- __________________________________CONFIRM______________________________-->
-        <div class="form-group">
-          <div class="form-check">
-            <input class="form-check-input" type="checkbox" name="confirmation" required id="confirmation">
-            <label class="form-check-label" for="confirmation" required>J'accepte le traitement informatique de ce
-              forumlaire.</label>
-          </div>
-          <input class="btn" type="submit" name="submit" id="bouton" value="Envoyer" />
-          <input class="btn" type="reset" name="reset" value="Annuler" />
-        </div>
+          <label for="demande">Votre demande* :</label>
+          <textarea name="Questions" required id="demande" class="form-control" rows="1"></textarea>
       </div>
-    </form>
+      </fieldset>
+      <!-- __________________________________CONFIRM______________________________-->
+      <div class="form-group">
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" name="confirmation" required id="confirmation">
+          <label class="form-check-label" for="confirmation" required>J'accepte le traitement informatique de ce
+            forumlaire.</label>
+        </div>
+        <input class="btn" type="submit" name="submit" id="bouton" value="Envoyer" />
+        <input class="btn" type="reset" name="reset" value="Annuler" />
+      </div>
   </div>
-
+  </form>
+  </div>
   <script src="assets/js/contact.js"></script>
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
     integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous">

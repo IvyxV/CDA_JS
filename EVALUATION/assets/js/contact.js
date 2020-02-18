@@ -6,13 +6,34 @@ const bouton = document.getElementById('bouton'),
     demande = document.getElementById('demande'),
     mas = document.getElementById('mas'),
     fem = document.getElementById('fem'),
+    adresse = document.getElementById('adresse'),
     //Les regex afin de veiller au bon remplissage du formulaire 
     regexNomEtPrenom = /^[a-zA-ZáàâäçéèêëîïñôöõùûüœÀÂÄÇÉÈÊËÎÑÔÙÛŒ_\s-]+$/,
     regexEmail = /^[a-z0-9._-]+@[a-z0-9._-]+\.[a-z]{2,6}$/,
-    regexCp = /[0-9]{5}|^$/;
+    regexCp = /[0-9]{5}|^$/
+    regexAdresse = /^[\ré]+[ ][a-z]{5}|^$/;
 //La fonction qui vérifie tout le formulaire
 function verification(event) {
     //On teste la valeur de la variable par rapport à la Regex, cela se déclenche si la fonction trouve une erreur
+
+    //Même chose avec le prénom 
+    //_________________PRENOM______________________________________________________________________________________________
+    if (!regexNomEtPrenom.test(prenom.value)) {
+        if (prenom.validity.valueMissing) {
+            event.preventDefault();
+            let erreurPrenom = document.getElementById('missPrenom');
+            erreurPrenom.textContent = "Tu dois entrer un prénom";
+        } else {
+            event.preventDefault();
+            let erreurPrenom = document.getElementById('missPrenom');
+            erreurPrenom.textContent = "Caractère alphabétique uniquement.";
+        }
+        erreurPrenom.style.color = "#fba";
+        erreurPrenom.style.fontSize = "20px";
+    } else {
+        let erreurPrenom = document.getElementById('missPrenom');
+        erreurPrenom.textContent = "";
+    }
     //_________________NOM_________________________________________________________________________________________________
     if (!regexNomEtPrenom.test(nom.value)) {
         //SI le champ est vide
@@ -35,24 +56,6 @@ function verification(event) {
     } else {
         let erreurNom = document.getElementById('missNom');
         erreurNom.textContent = "";
-    }
-    //Même chose avec le prénom 
-    //_________________PRENOM______________________________________________________________________________________________
-    if (!regexNomEtPrenom.test(prenom.value)) {
-        if (prenom.validity.valueMissing) {
-            event.preventDefault();
-            let erreurPrenom = document.getElementById('missPrenom');
-            erreurPrenom.textContent = "Tu dois entrer un prénom";
-        } else {
-            event.preventDefault();
-            let erreurPrenom = document.getElementById('missPrenom');
-            erreurPrenom.textContent = "Caractère alphabétique uniquement.";
-        }
-        erreurPrenom.style.color = "#fba";
-        erreurPrenom.style.fontSize = "20px";
-    } else {
-        let erreurPrenom = document.getElementById('missPrenom');
-        erreurPrenom.textContent = "";
     }
     //La regex pour le mail n'est pas la même que les prénoms : on lui demande de vérifier la présence d'une arobase, et de caractères qui la suivent. 
     //_________________EMAIL_______________________________________________________________________________________________
@@ -82,8 +85,8 @@ function verification(event) {
     } else {
         let erreurDemande = document.getElementById('missDemande');
         erreurDemande.textContent = "";
+        //Si aucun choix n'a été fait au bouton radio, renvoie une erreur 
     }
-    //Si aucun choix n'a été fait au bouton radio, renvoie une erreur 
     //_________________SEXE________________________________________________________________________________________________
     if (mas.validity.valueMissing && fem.validity.valueMissing && other.validity.valueMissing) {
         event.preventDefault();
@@ -95,7 +98,6 @@ function verification(event) {
         let missSexe = document.getElementById('sexe');
         missSexe.textContent = "";
     }
-    //Même chose avec la date 
     //_________________DATE_DE_NAISSANCE___________________________________________________________________________________
     if (birth.validity.valueMissing) {
         event.preventDefault();
@@ -108,8 +110,21 @@ function verification(event) {
         missBirth.textContent = "";
     }
     //_________________CODE_POSTAL_________________________________________________________________________________________
-    if (!regexCp.test(postal.value))
-    //Le regex du code postal lui demande de soit contenir 5 chiffres, soit d'être vide. Autrement c'est une erreur 
+    if (!regexCp.test(postal.value) || parseInt(postal.value) < 1000 || parseInt(postal.value) > 98890)
+    //Le regex du code postal lui demande de soit contenir 5 chiffres, soit d'être vide et d'être compris entre 1000 et 98890. Autrement c'est une erreur 
+    {
+        event.preventDefault();
+        let erreurCp = document.getElementById('missCp');
+        erreurCp.textContent = "Code Postal invalide.";
+        erreurCp.style.color = "#fba";
+        erreurCp.style.fontSize = "20px";
+    } else {
+        let erreurCp = document.getElementById('missCp');
+        erreurCp.textContent = "";
+    }
+    //________________ADRESSE_________________________________________________________________________________________
+    if (!regexCp.test(email.value) || parseInt(email.value) < 1000 || parseInt(postal.value) > 98890)
+    //Le regex du code postal lui demande de soit contenir 5 chiffres, soit d'être vide et d'être compris entre 1000 et 98890. Autrement c'est une erreur 
     {
         event.preventDefault();
         let erreurCp = document.getElementById('missCp');
